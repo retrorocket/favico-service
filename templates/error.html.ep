@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>favico! - error</title>
+		<%= include 'header' %>
+	</head>
+
+	<body>
+		<%= include 'navbar' %>
+		<div class="container">
+			<h2>Error</h2>
+			<p>
+			<%= $message %>
+			</p>
+			<p><a href="<%= url_for('index', fav =>"") %>">戻る</a></p>
+			<%= include 'footer' %>
+		</div> 
+	</body>
+</html>
+

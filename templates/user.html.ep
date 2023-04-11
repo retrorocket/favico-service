@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<% if($a_name eq "" || !defined($a_name) ){%>
+		<title>favico!</title>
+		<% } else {%>
+		<title>favico! - <%= $a_name %></title>
+		<% } %>
+		<%= include 'header' %>
+	</head>
+	<body>
+		<!--topmenu-->
+		<%= include 'navbar' %>
+
+		<div class="container">
+			<div class="row-fluid">
+				% stash(index_flag => 0);
+				<%= include 'favbar' %>
+
+				<div class="span9">
+					<div class="row-fluid">
+						<div class="span12">
+							<% if($a_name eq "" || !defined($a_name) ){%>
+							<h3>ユーザがみつかりませんでした</h3>
+							<% } else {%>
+							<h3><a href = "https://twitter.com/<%= $a_name %>">@<%= $a_name %></a>&#39;s favorites</h3>
+							<% if( $pos ne "" ) {%>
+							<ul class="breadcrumb">
+								<li><a href = "https://twitter.com/<%= $pos %>">@<%= $pos %></a></li>
+							</ul>
+							<% } %>
+							<% } %>
+						</div><!--span12-->
+					</div><!--row-->
+
+					<div class="row-fluid con">
+					<% my $i=0; for my $ref(@$timeline){ my $file = $ref->{file}; my $dat = $ref->{dat}; my $aut = $ref->{aut};  %>
+					<div class="well well-small span3">
+						<p>
+							<img src = "//favico.retrorocket.biz/image/<%= $name %>/<%= $file %>" width="48" height ="48">
+						</p>
+						<p style = "margin-top:-4px">
+							<strong><a href="https://twitter.com/<%= $aut %>">@<%= $aut %></a></strong><br/>
+							<%= $dat %>
+						</p>
+					</div><!--span2-->
+
+					<% $i++; if($i%4 == 0){ %>
+					</div><div class="row-fluid">
+					<% } }%>
+					</div><!--row-->
+
+					<% if($i == 0 && ( $pos ne "" ) ){ %>
+					<div class="row-fluid">
+						<div class="span12">
+							<p>ユーザがみつかりませんでした</p>
+						</div><!--span12-->
+					</div><!--row-->
+					<% } %>
+
+					<% if($count>0) { %>
+					<%= include 'pagenav' %>
+					<% } %>
+
+				</div><!--span9-->
+			</div><!--row-->
+
+			<div class="row-fluid">
+				<div class="span12">
+						<%= include 'footer' %>
+				</div>
+			</div>
+
+		</div> <!-- /container -->
+	</body>
+</html>

@@ -1,0 +1,23 @@
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="pagination">
+								<ul>
+									<% my $i=1; my $dis_p=""; my $dis_n="";%>
+									<% if($paging  == 1) {$dis_p  = "disabled";}  if($paging+1 > $count) {$dis_n  = "disabled";} %>
+									<li class="<%= $dis_p %>">
+									<% unless ($dis_p eq "disabled"){ %>
+									<a href="<%= url_for('current')->query([page => $paging-1]) %>">
+										<% } else { %><a href="#"><% } %>
+											&laquo;</a></li>
+										<% for($i =1; $i<= $count; $i++) { my $ac=""; if($paging == $i) {$ac  = "active";}%>
+										<li class="<%= $ac %>"><a href="<%= url_for('current')->query([page => $i]) %>"><%= $i %></a></li>
+										<% } %>
+										<li class = "<%= $dis_n %>">
+										<% unless ($dis_n eq "disabled"){ %>
+										<a href="<%= url_for('current')->query([page => $paging+1]) %>">
+											<% } else { %><a href="#"><% } %>
+												&raquo</a></li>
+								</ul>
+							</div><!--page-->
+						</div><!--span-->
+					</div><!--row-->

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>favico! - logout</title>
+		% stash(mail_flag => 0);
+		<%= include 'exheader' %>
+	</head>
+
+	<body>
+
+		<div class="container-narrow">
+			<%= include 'exbody' %>
+			<hr>
+			<div>
+				<h2>Logout</h2>
+				<p style = "padding:10px 0px;">
+					ログアウトしました
+				</p>
+			</div>
+			<hr>
+			<%= include 'exfooter' %>
+		</div> 
+	</body>
+</html>
+

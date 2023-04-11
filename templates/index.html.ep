@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>favico! - Home</title>
+		% stash(index_flag => 1);
+		<%= include 'header' %>
+	</head>
+
+	<body>
+
+		<%= include 'navbar' %>
+
+		<div class="container">
+			<div class="row-fluid">
+				<%= include 'favbar' %>
+				<div class="span9">
+					<div class="row-fluid">
+						<div class="span12">
+							<h3>Your favorites</h3>
+							<% if( $pos ne "" ) {%>
+							<ul class="breadcrumb">
+								<li><a href = "https://twitter.com/<%= $pos %>">@<%= $pos %></a></li>
+							</ul>
+							<% } %>
+						</div><!--span12-->
+					</div><!--row-->
+
+					<div class="row-fluid con">
+					<% my $i=0;  for my $ref(@$timeline){ my $file = $ref->{file}; my $dat = $ref->{dat}; my $aut = $ref->{aut}; my $id = $ref->{id}; %>
+					<div class="well well-small span3 hov">
+						<p>
+							<img src = "//favico.retrorocket.biz/image/<%= $name %>/<%= $file %>" width="48" height ="48" style = "margin-right:2px;vertical-align:middle" >
+							<a href="#" class="delete" iconid="<%= $id %>" author="<%= $aut %>" filename="<%= $file %>" title = "お気に入りから解除"><i class = "icon-star"></i></a>
+							<a href="https://twitter.com/share?text=%40<%= $a_name %>%e3%81%95%e3%82%93%e3%81%8c%40<%= $aut %>%e3%81%95%e3%82%93%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e3%82%92%e3%81%8a%e6%b0%97%e3%81%ab%e5%85%a5%e3%82%8a%e3%81%ab%e7%99%bb%e9%8c%b2%e3%81%97%e3%81%be%e3%81%97%e3%81%9f%20&amp;url=https%3a%2f%2ffavico%2eretrorocket%2ebiz%2f<%= $a_name %>" class="favtweet" title = "お気に入り相手に通知する"><i class = "icon-comment"></i></a>
+						</p>
+						<p style="clear:both;margin-top:-4px">
+							<strong><a href="https://twitter.com/<%= $aut %>">@<%= $aut %></a></strong><br />
+							<%= $dat %>
+						</p>
+					</div><!--span3-->
+					<% $i++; if($i%4 == 0){ %>
+					</div><div class="row-fluid">
+					<% } }%>
+					</div><!--row-->
+
+					<% if($i == 0 && ( $pos ne "" )){ %>
+					<div class="row-fluid">
+						<div class="span12">
+							<p>ユーザがみつかりませんでした</p>
+						</div><!--span-->
+					</div><!--row-->
+					<% } %>
+
+					<% if($count>0) {%>
+					<%= include 'pagenav' %>
+					<% } %>
+
+					<div class="row-fluid">
+						<div class="span12">
+							<%= include 'footer' %>
+						</div>
+					</div>
+
+				</div><!--span9-->
+			</div><!--row-->
+
+		</div> <!-- /container -->
+
+	</body>
+
+</html>

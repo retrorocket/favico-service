@@ -1,0 +1,69 @@
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="<%= url_for('about') %>">favico!</a>
+					<div>
+
+						<ul class="nav pull-left">
+								<li><a href="<%= url_for('index',fav =>"") %>"><i class="icon-home icon-white"></i> Home</a></li>
+							<% if($log  == 1) {%>
+								<li><a href="#myModal" data-toggle="modal"><i class="icon-edit icon-white"></i> Add</a></li>
+							<% }%>
+						</ul>
+
+						<form class="navbar-search form-search pull-left" action="<%= url_for('user_old') %>" method="GET">
+							<div class="input-append">
+								<input type="text" class="span2 search-query" id="sq" placeholder="Twitter ID&#039;s favorite" name="username">
+								<button type="submit" class="btn"><i class = "icon-search"></i></button>
+							</div>
+						</form>
+
+						<% if($log  == 1) {%>
+							<ul class="nav pull-right">
+								<li class="dropdown">
+									<a id ="drop" role ="button" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class = "icon-th icon-white"></i> @<%= $log_a_name %><b class="caret"></b></a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="drop">
+										<li class="nav-header">ログアウト</li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="<%= url_for('logout') %>">Logout <i class = "icon-off icon-white"></i></a></li>
+										<li role="presentation" class="divider"></li>
+										<li class="nav-header">退会処理</li>
+										<li role="presentation">
+											<form class="form-inline" id ="all_delete" action="<%= url_for('all_delete') %>" method="POST" style = "display:none;"></form>
+											<a role="menuitem" tabindex="-1" href="#" id = "a_all_delete">ユーザ情報を消去 <i class = "icon-remove-sign icon-white"></i></a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						<% } else {%>
+							<ul class="nav pull-right">
+								<li>-</li>
+							</ul>
+						<% } %>
+
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+
+		<% if($log  == 1) {%>
+		<!-- modal-->
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Icon add.</h3>
+			</div>
+			<form action="<%= url_for('fav') %>" method="POST">
+				<div class="modal-body">
+					<h5>お気に入りに登録したいアイコンのユーザー名を入力してください</h5>
+					<div class = "input-prepend">
+						<span class = "add-on">@</span><input type="text" name="favname" id = "fname">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<img src ="//favico.retrorocket.biz/img/blank.png" id="chck_img">
+					<input type="button" value="アイコン確認" class="btn" id="chck">
+					<button class="btn btn-primary" type="submit">Fav</button>
+				</div>
+			</form>
+		</div>
+		<% }%>

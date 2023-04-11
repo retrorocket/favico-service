@@ -1,0 +1,12 @@
+			<div class="masthead">
+				<ul class="nav nav-pills pull-right">
+					<% if($log  == 1) {%>
+					<li><a href="<%= url_for('about') %>">About</a></li>
+					<li><a href="<%= url_for('index') %>">Home</a></li>
+					<% } else {%>
+					<li><a href="<%= url_for('index') %>">About</a></li>
+					<% } %>
+				</ul>
+				<h3 class="muted">favico! <span style = "font-size:16px;font-weight:normal;">make your icon a favorite</span></h3>
+			</div>
+

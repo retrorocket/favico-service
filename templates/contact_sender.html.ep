@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>favico! - contact</title>
+		% stash(mail_flag => 1);
+		<%= include 'exheader' %>
+	</head>
+
+	<body>
+
+		<div class="container-narrow">
+
+			<%= include 'exbody' %>
+
+			<hr>
+
+			<div>
+				<h2>Contact</h2>
+				<p><%= $message %></p>
+			</div>
+
+			<hr>
+
+			<%= include 'exfooter' %>
+
+		</div> <!-- /container -->
+	</body>
+</html>

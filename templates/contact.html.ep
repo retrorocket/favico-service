@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>favico! - contact</title>
+        % stash(mail_flag => 1);
+        <%= include 'exheader' %>
+    </head>
+
+    <body>
+
+        <div class="container-narrow">
+
+            <%= include 'exbody' %>
+            <hr>
+            <div>
+
+                <form action="<%= url_for('contact_sender') %>" method="POST" id="mail-form">
+                    <fieldset>
+                        <div class="control-group">
+                            <legend>Contact</legend>
+                            <label>お名前</label>
+                            <input type="text" name ="name" placeholder="Your Name">
+
+                            <label>メールアドレス or twitterアカウント名</label>
+                            <span class="help-block">メールかtwitterでの返信が必要な場合、入力必須です</span>
+                            <input type="text" name = "contact" placeholder="ex@mail.com or @someone">
+                            <label>メッセージ本文（必須）</label>
+                            <textarea class="span4" rows="5" id="mes" name="message"></textarea>
+                                <label class="checkbox">
+                                    <input type="checkbox" name ="checker" id="checker" value="checked"> 送信する内容をご確認の上チェックを入れてください
+                                </label>
+                        </div>
+                        <div class="form-actions">
+                            <button data-callback="onSubmit" data-action="submit" data-sitekey="6LcuongUAAAAAEP6SE0L_tkJTxP_F9GBvc66jdH7" id="send" class="btn btn-primary g-recaptcha" disabled>Submit</button>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+            <div>
+                <p>メールフォームが使用できない場合は以下へご連絡をおねがいいたします。</p>
+                <ul>
+                    <li>e-mail: <a href="mailto:&#109;&#97;&#105;&#108;&#64;&#114;&#101;&#116;&#114;&#111;&#114;&#111;&#99;&#107;&#101;&#116;&#46;&#98;&#105;&#122;">&#109;&#97;&#105;&#108;&#64;&#114;&#101;&#116;&#114;&#111;&#114;&#111;&#99;&#107;&#101;&#116;&#46;&#98;&#105;&#122;</a></li>
+                    <li>twitter: <a href="https://twitter.com/retrorocket">@retrorocket</a></li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <%= include 'exfooter' %>
+
+        </div> <!-- /container -->
+        <script src="//favico.retrorocket.biz/js/jQuery.js"></script>
+        <script src="//favico.retrorocket.biz/js/contact.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script>
+            function onSubmit(token) {
+                document.getElementById("mail-form").submit();
+            }
+        </script>
+    </body>
+</html>

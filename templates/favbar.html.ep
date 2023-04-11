@@ -1,0 +1,26 @@
+				<div class="span3">
+					<div class="sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header">Favorite User</li>
+							<%  my $i = 0; for my $ref(@$usertimeline){ my $aut = $ref->{aut}; my $kensu = $ref->{kensu}; my $act = ""; if ($aut eq $pos){$act = "active";} %>
+							<li class = "<%= $act %>">
+							<% my $fav_query = $self->param("allfavs") || ""; %>
+							<% my $url_n; if($index_flag == 1) {$url_n = url_for('index_favname',fav => $aut);} else{$url_n = url_for('user_favname',fav => $aut );} %>
+							<% if($fav_query) {$url_n = $url_n->query({allfavs => $fav_query});}%>
+							<a href=" <%= $url_n %>"><span>@<%= $aut %></span><span style="color:#BBBBBB;display:block;float:right"><%= $kensu %></span></a></li>
+							<% $i++; } %>
+							<% if ($i > 10 && $allfavs eq "on"){ %>
+							<li><a href="<%= url_with->query([allfavs => 'off']) %>"><i class="icon-chevron-right"></i>閉じる</a></li>
+							<% } elsif($i == 10) { %>
+							<li><a href="<%= url_with->query([allfavs => 'on']) %>"><i class="icon-chevron-right"></i>すべてのユーザを表示</a></li>
+							<% } %>
+							<li>
+<% if($log  == 1 && (url_for('current') eq url_for('index') || url_for('current') eq url_for('index_favname')) ) {%>
+<a href="<%= url_for('index',fav =>"")%>">
+<% } else {%>
+<a href="<%= url_for('user',username => $a_name )%>">
+<% } %>
+<i class="icon-chevron-right"></i>表示をリセット</a></li>
+						</ul>
+					</div><!--/.well -->
+				</div><!--/span-->
